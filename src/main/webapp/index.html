@@ -4,7 +4,26 @@
     <meta charset="UTF-8">
     <title>Agile Board</title>
 </head>
-<body>
-<h2>Hello Eva!</h2>
+<body ng-app="myApp" ng-controller="ticketsController">
+
+<h2>Welcome to on line task bar!</h2>
+
+<table>
+    <tr ng-repeat="t in tickets">
+        <td>{{t.id}}</td>
+        <td>{{t.name}}</td>
+        <td>{{t.description}}</td>
+        <td>{{t.type}}</td>
+    </tr>
+</table>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('ticketsController', function($scope, $http) {
+        $http.get("customers.php")
+            .then(function (response) {$scope.names = response.data.records;});
+    });
+</script>
+
 </body>
 </html>
