@@ -1,12 +1,14 @@
 package com.example.AgileBoard.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.sun.deploy.security.ValidationState;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.Size;
+import java.util.UUID;
 
 /**
  * Created by UserDto on 12/10/2017.
@@ -22,6 +24,7 @@ public class TicketDto {
     @Indexed(unique=true)
     private String name;
     private String description;
+    private TypeTicket type;
 
     public TicketDto() {
     }
@@ -50,6 +53,14 @@ public class TicketDto {
         this.description = description;
     }
 
+    public TypeTicket getType() {
+        return type;
+    }
+
+    public void setType(TypeTicket type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("TicketDto{");
@@ -59,4 +70,5 @@ public class TicketDto {
         sb.append('}');
         return sb.toString();
     }
+
 }
